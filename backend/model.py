@@ -9,7 +9,7 @@ df = pd.read_csv("genomic_data.csv")  # Update if filename differs
 
 # Check for nulls
 if df.isnull().sum().sum() > 0:
-    print("⚠️ Warning: Dataset contains null values. Filling with mean...")
+    print(" Warning: Dataset contains null values. Filling with mean...")
     df = df.fillna(df.mean(numeric_only=True))
 
 # Round values to 2 decimals
@@ -35,4 +35,4 @@ knn.fit(X_train_scaled, y_train)
 joblib.dump(knn, "cancer_model.pkl")
 joblib.dump(scaler, "scaler.pkl")
 
-print("✅ Model trained and saved as 'cancer_model.pkl'")
+print("Model trained and saved as 'cancer_model.pkl'")

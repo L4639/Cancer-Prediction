@@ -12,33 +12,33 @@ scaler = joblib.load("scaler.pkl")
 
 @app.route("/")
 def home():
-    return "🧬 Cancer Prediction API is Running"
+    return " Cancer Prediction API is Running"
 
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
         input_data = request.json["data"]
-        print("🔹 Received input:", input_data)
+        print(" Received input:", input_data)
 
         # Convert to DataFrame
         df = pd.DataFrame(input_data)
-        print("🔹 DataFrame format:\n", df)
+        print(" DataFrame format:\n", df)
 
         # Round to 2 decimals
         df = df.round(2)
 
         # Scale inputs
         scaled_input = scaler.transform(df)
-        print("🔹 Scaled input:", scaled_input)
+        print(" Scaled input:", scaled_input)
 
         # Prediction
         prediction = model.predict(scaled_input)
-        print("✅ Prediction:", prediction)
+        print(" Prediction:", prediction)
 
         return jsonify({"prediction": prediction.tolist()})
 
     except Exception as e:
-        print("❌ Error during prediction:", e)
+        print(" Error during prediction:", e)
         return jsonify({"error": str(e)})
 
 if __name__ == "__main__":
